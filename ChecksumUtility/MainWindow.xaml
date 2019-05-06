@@ -1,0 +1,39 @@
+﻿<Window x:Class="ChecksumUtility.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChecksumUtility"
+        mc:Ignorable="d"
+        Title="Checksum Utility" Height="450" Width="800" Background="LightSkyBlue">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="112"/>
+            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Generate Hash:" Foreground="DarkBlue" FontWeight="Bold"/>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="File:" Foreground="Maroon" FontWeight="Bold"/>
+        <TextBox Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="Select File Path" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="MD5:" Foreground="Maroon" FontWeight="Bold"/>
+        <TextBox Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="SHA-1:" Foreground="Maroon" FontWeight="Bold"/>
+        <TextBox Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="SHA-256:" Foreground="Maroon" FontWeight="Bold"/>
+        <TextBox Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Verify Hash with Generated Hash (MD5, SHA-1 OR SHA-256):" Foreground="DarkGreen" FontWeight="Bold"/>
+        <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Hash:" Foreground="Maroon" FontWeight="Bold"/>
+        <TextBox Grid.Row="6" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+    </Grid>
+</Window>
