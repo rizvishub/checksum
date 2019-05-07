@@ -36,10 +36,11 @@ namespace ChecksumUtility
         private void Browse_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFD = new OpenFileDialog();
-            openFD.InitialDirectory = "C:\\";
+            //openFD.InitialDirectory = "C:\\";
             openFD.Filter = "All files (*.*)|*.*";
             openFD.Title = "Select a File to Generate Hash.";
             openFD.FileName = "";
+            openFD.RestoreDirectory = true;
 
             if (openFD.ShowDialog() == true)
             {
