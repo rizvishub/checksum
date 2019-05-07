@@ -89,7 +89,6 @@ namespace ChecksumUtility
             if (e.Result == null)
                 return;
             this.txtMD5.Text = e.Result.ToString();
-            this.txtMD5.IsEnabled = true;
             this.progressBarMD5.IsIndeterminate = false;
             this.progressBarMD5.Value = 0;
             this.progressBarMD5.Visibility = Visibility.Hidden;
@@ -143,7 +142,6 @@ namespace ChecksumUtility
             if (e.Result == null)
                 return;
             this.txtSHA1.Text = e.Result.ToString();
-            this.txtSHA1.IsEnabled = true;
             this.progressBarSHA1.IsIndeterminate = false;
             this.progressBarSHA1.Value = 0;
             this.progressBarSHA1.Visibility = Visibility.Hidden;
@@ -197,7 +195,6 @@ namespace ChecksumUtility
             if (e.Result == null)
                 return;
             this.txtSHA256.Text = e.Result.ToString();
-            this.txtSHA256.IsEnabled = true;
             this.progressBarSHA256.IsIndeterminate = false;
             this.progressBarSHA256.Value = 0;
             this.progressBarSHA256.Visibility = Visibility.Hidden;
@@ -245,5 +242,120 @@ namespace ChecksumUtility
             txtSHA256.Text = stringBuilder.ToString();
         }
 
+        private void Verify_Click(object sender, RoutedEventArgs e)
+        {
+            string textPasteHash = this.txtPasteHash.Text.Trim().ToUpper();
+
+            int num;
+
+            if (textPasteHash == "" || textPasteHash == null)
+            {
+                num = (int)MessageBox.Show("Enter Hash to match!", "No Hash", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (textPasteHash == this.txtMD5.Text.Trim().ToUpper())
+            {
+                num = (int)MessageBox.Show("MD5 Hash matched.", "Matched", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            else if (textPasteHash == this.txtSHA1.Text.Trim().ToUpper())
+            {
+                this.txtPasteHash.Text = this.txtPasteHash.Text.Trim().ToUpper();
+                num = (int)MessageBox.Show("SHA-1 Hash matched.", "Matched", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            else if (textPasteHash == this.txtSHA256.Text.Trim().ToUpper())
+            {
+                this.txtPasteHash.Text = this.txtPasteHash.Text.Trim().ToUpper();
+                num = (int)MessageBox.Show("SHA-256 Hash matched.", "Matched", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            }
+            else
+            {
+                this.txtPasteHash.Text = this.txtPasteHash.Text.Trim().ToUpper();
+                num = (int)MessageBox.Show("Hash does not match!", "Not match", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+
+        private void CopyMD5_Click(object sender, RoutedEventArgs e)
+        {
+            string textMD5 = this.txtMD5.Text.Trim();
+            if (textMD5 == "" || textMD5 == null)
+                return;
+            int num = (int)MessageBox.Show("MD5 checksum has been copied to clipboard", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            Clipboard.SetDataObject((object)this.txtMD5.Text.Trim());
+        }
+
+        private void CopySHA1_Click(object sender, RoutedEventArgs e)
+        {
+            string textSHA1 = this.txtSHA1.Text.Trim();
+            if (textSHA1 == "" || textSHA1 == null)
+                return;
+            int num = (int)MessageBox.Show("SHA-1 checksum has been copied to clipboard", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            Clipboard.SetDataObject((object)this.txtSHA1.Text.Trim());
+        }
+
+        private void CopySHA256_Click(object sender, RoutedEventArgs e)
+        {
+            string textSHA256 = this.txtSHA256.Text.Trim();
+            if (textSHA256 == "" || textSHA256 == null)
+                return;
+            int num = (int)MessageBox.Show("SHA-256 checksum has been copied to clipboard", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            Clipboard.SetDataObject((object)this.txtSHA256.Text.Trim());
+        }
+
+        private void CopyAll_Click(object sender, RoutedEventArgs e)
+        {
+            string textMD5 = this.txtMD5.Text.Trim();
+            string textSHA1 = this.txtSHA1.Text.Trim();
+            string textSHA256 = this.txtSHA256.Text.Trim();
+            StringBuilder sb = new StringBuilder();
+            if (textMD5 != "" && textMD5 != null)
+            {
+                sb.Append("MD5 Checksum: ");
+                sb.Append(textMD5);
+                sb.Append("\r\n");
+            }
+            if (textSHA1 != "" && textSHA1 != null)
+            {
+                sb.Append("SHA-1 Checksum: ");
+                sb.Append(textSHA1);
+                sb.Append("\r\n");
+            }
+            if (textSHA256 != "" && textSHA256 != null)
+            {
+                sb.Append("SHA-256 Checksum: ");
+                sb.Append(textSHA256);
+                sb.Append("\r\n");
+            }
+            sb.Append("Generated by Checksum Utility WPF");
+            Clipboard.SetDataObject((object)sb.ToString());
+            int num = (int)MessageBox.Show("All selected checksums have been copied to clipboard", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+        }
+
+        private void Paste_Click(object sender, RoutedEventArgs e)
+        {
+            IDataObject dataObject = Clipboard.GetDataObject();
+            if (dataObject.GetDataPresent(DataFormats.Text))
+            {
+                this.txtPasteHash.Text = dataObject.GetData(DataFormats.Text).ToString();
+            }
+            else
+            {
+                int num = (int)MessageBox.Show("There is no data from the clipboard.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ChkSHA1_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtSHA1.Text = "";
+        }
+
+        private void ChkMD5_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtMD5.Text = "";
+        }
+
+        private void ChkSHA256_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtSHA256.Text = "";
+        }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChecksumUtility"
         mc:Ignorable="d"
-        Title="Checksum Utility" Height="320" Width="770" Background="Cornsilk">
+        Title="Checksum Utility WPF" Height="320" Width="770" Background="Cornsilk">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -24,31 +24,31 @@
             <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Generate Hash:" Foreground="DarkBlue" FontWeight="Bold"/>
+        <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Select a File to Generate Hash:" Foreground="DarkBlue" FontWeight="Bold"/>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="File:" Foreground="Maroon" FontWeight="Bold"/>
         <Button Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Click="Browse_Click">Browse</Button>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="MD5:" Foreground="Maroon" FontWeight="Bold"/>
-        <CheckBox Name="chkMD5" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
-        <TextBox Name="txtMD5" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <CheckBox Name="chkMD5" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" Unchecked="ChkMD5_Unchecked"/>
+        <TextBox Name="txtMD5" Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" IsEnabled="False"/>
         <ProgressBar Name="progressBarMD5" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" Height="20" Visibility="Hidden" />
-        <Button Name="btnCopyMD5" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86">Copy MD5</Button>
+        <Button Name="btnCopyMD5" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Click="CopyMD5_Click">Copy MD5</Button>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="SHA-1:" Foreground="Maroon" FontWeight="Bold"/>
-        <CheckBox Name="chkSHA1" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
-        <TextBox Name="txtSHA1" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <CheckBox Name="chkSHA1" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" Unchecked="ChkSHA1_Unchecked"/>
+        <TextBox Name="txtSHA1" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" IsEnabled="False"/>
         <ProgressBar Name="progressBarSHA1" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" Height="20" Visibility="Hidden" />
-        <Button Name="btnCopySHA1" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86">Copy SHA-1</Button>
+        <Button Name="btnCopySHA1" Grid.Row="3" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Click="CopySHA1_Click">Copy SHA-1</Button>
         <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="SHA-256:" Foreground="Maroon" FontWeight="Bold"/>
-        <CheckBox Name="chkSHA256" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True"/>
-        <TextBox Name="txtSHA256" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <CheckBox Name="chkSHA256" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" Unchecked="ChkSHA256_Unchecked"/>
+        <TextBox Name="txtSHA256" Grid.Row="4" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" IsEnabled="False"/>
         <ProgressBar Name="progressBarSHA256" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" Height="20" Visibility="Hidden" />
-        <Button Name="btnCopySHA256" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86">Copy SHA-256</Button>
+        <Button Name="btnCopySHA256" Grid.Row="4" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Click="CopySHA256_Click">Copy SHA-256</Button>
         <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Verify Hash with Generated Hash (MD5, SHA-1 OR SHA-256):" Foreground="DarkGreen" FontWeight="Bold"/>
-        <Button Name="btnCopyAll" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86">Copy All</Button>
+        <Button Name="btnCopyAll" Grid.Row="5" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Click="CopyAll_Click">Copy All</Button>
         <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Hash:" Foreground="Maroon" FontWeight="Bold"/>
-        <TextBox Grid.Row="6" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
-        <Button Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86">Paste</Button>
-        <Button Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="86" Margin="0,5,20,0">Verify</Button>
-        <TextBox Name="txtFilePath" Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" TextChanged="TxtFilePath_TextChanged"/>
+        <TextBox Name="txtPasteHash" Grid.Row="6" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <Button Grid.Row="6" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="86" Click="Paste_Click">Paste</Button>
+        <Button Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="86" Margin="0,5,20,0" Click="Verify_Click">Verify</Button>
+        <TextBox Name="txtFilePath" Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480" TextChanged="TxtFilePath_TextChanged" IsEnabled="False"/>
 
     </Grid>
 </Window>
