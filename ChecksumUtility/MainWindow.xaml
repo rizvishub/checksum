@@ -21,13 +21,13 @@
             <ColumnDefinition Width="112"/>
             <ColumnDefinition Width="32"/>
             <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="32"/>
+            <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Generate Hash:" Foreground="DarkBlue" FontWeight="Bold"/>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="File:" Foreground="Maroon" FontWeight="Bold"/>
-        <TextBox Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="Select File Path" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
-        <Button Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="77">Browse</Button>
+        <TextBox Name="txtFilePath" Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="Select File Path" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
+        <Button Grid.Row="1" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="77" Click="Browse_Click">Browse</Button>
         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="MD5:" Foreground="Maroon" FontWeight="Bold"/>
         <TextBox Grid.Row="2" Grid.Column="2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Width="480"/>
         <Button Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center" Width="77">Copy MD5</Button>

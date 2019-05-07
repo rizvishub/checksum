@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,25 @@ namespace ChecksumUtility
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Browse_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFD = new OpenFileDialog();
+            openFD.InitialDirectory = "C:\\";
+            openFD.Title = "Please Select an ISO file";
+            openFD.FileName = "";
+            openFD.DefaultExt = ".iso";
+            openFD.Filter = "ISO Files|*.iso";
+
+            if (openFD.ShowDialog() == true)
+            {
+                txtFilePath.Text = openFD.FileName;
+            }
         }
     }
 }
